@@ -17,14 +17,16 @@ class Parser5ka:
 
     def __init__(self):
         self.products = []
+        self.structure = {}
 
     def get_structure(self):
         try:
             categories = requests.get(self._domain + self._categories_path, headers=self.headers)
             self.structure = categories.json()
         except ValueError as e:
-            return 'There was an error getting categories from url: ' + e
+            return 'There was an error getting categories from url: ' + str(e)
 
+    # noinspection PyUnboundLocalVariable
     def download(self):
         self.get_structure()
         for category in tqdm(self.structure):
