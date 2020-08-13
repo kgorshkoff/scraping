@@ -1,6 +1,8 @@
-import requests
-import time
 import json
+import time
+
+import requests
+from tqdm import tqdm
 
 
 class Parser5ka:
@@ -9,7 +11,8 @@ class Parser5ka:
     _categories_path = '/api/v2/categories/'
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.2 Safari/605.1.15"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) "
+                      "Version/13.1.2 Safari/605.1.15"
     }
 
     def __init__(self):
@@ -21,7 +24,7 @@ class Parser5ka:
 
     def download(self):
         self.get_structure()
-        for category in self.structure:
+        for category in tqdm(self.structure):
             url = self._domain + self._offers_path
             params = {
                 'records_per_page': 20,
