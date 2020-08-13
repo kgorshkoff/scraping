@@ -46,11 +46,8 @@ class Parser5ka:
                         category['products'] = data['results']
                 time.sleep(0.1)
 
-        return self.structure
-
-    @staticmethod
-    def save_data(arr):
-        for item in arr:
+    def save_data(self):
+        for item in self.structure:
             if item.get('products'):
                 with open(item['parent_group_code'] + '.json', 'w', encoding='UTF-8') as f:
                     f.write(json.dumps(item, ensure_ascii=False))
@@ -58,5 +55,6 @@ class Parser5ka:
 
 if __name__ == '__main__':
     parser = Parser5ka()
-    products = parser.download()
-    parser.save_data(products)
+
+    parser.download()
+    parser.save_data()
