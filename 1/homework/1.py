@@ -19,8 +19,11 @@ class Parser5ka:
         self.products = []
 
     def get_structure(self):
-        categories = requests.get(self._domain + self._categories_path, headers=self.headers)
-        self.structure = categories.json()
+        try:
+            categories = requests.get(self._domain + self._categories_path, headers=self.headers)
+            self.structure = categories.json()
+        except ValueError as e:
+            return 'There was an error getting categories from url: ' + e
 
     def download(self):
         self.get_structure()
