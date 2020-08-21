@@ -51,9 +51,10 @@ class Author(Base):
     name = Column(String, unique=False, nullable=False)
     post = relationship('Post', back_populates='author')
 
-    def __init__(self, url: str, name: str):
+    def __init__(self, url: str, name: str, posts=[]):
         self.url = url
         self.name = name
+        self.post.extend(posts)
 
 
 class Tag(Base):
@@ -63,9 +64,10 @@ class Tag(Base):
     name = Column(String, unique=False, nullable=False)
     post = relationship('Post', secondary=tag_post, back_populates='tag')
 
-    def __init__(self, url: str, name: str):
+    def __init__(self, url: str, name: str, posts=[]):
         self.url = url
         self.name = name
+        self.post.extends(posts)
 
 
 class Hub(Base):
@@ -75,6 +77,7 @@ class Hub(Base):
     name = Column(String, unique=False, nullable=False)
     post = relationship('Post', secondary=hub_post, back_populates='hub')
 
-    def __init__(self, url: str, name: str):
+    def __init__(self, url: str, name: str, posts=[]):
         self.url = url
         self.name = name
+        self.post.extends(posts)
