@@ -36,7 +36,7 @@ class MvideoScraper:
                    '//table[@class="table table-striped product-details-table"]'
                    '//span[@class="product-details-overview-specification"]',
         'title': '//div[@class="o-pdp-topic__title"]/h1',
-        'price': '//div[@class="c-pdp-price__summary"]/div[@class="c-pdp-price__offers"]' \
+        'price': '//div[@class="c-pdp-price__summary"]/div[@class="c-pdp-price__offers"]'
                  '/div[contains(@class, "c-pdp-price__current")]'
 
     }
